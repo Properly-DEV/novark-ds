@@ -22,12 +22,14 @@
 ## CSS Strategy
 - Approach: Tailwind utility classes in `className`
 - Config: `tailwind.config.ts` — all design tokens mapped from `tokens/tokens.css`
+- **Strict Tailwind mode** — `colors`, `spacing`, `borderRadius`, `fontFamily`, `fontSize`, `fontWeight`, `letterSpacing`, `strokeWidth` live OUTSIDE `extend`, which replaces the Tailwind defaults. Writing `bg-blue-500`, `p-4`, `text-sm`, `font-bold`, `rounded-lg`, `tracking-wide` etc. (anything from the Tailwind default palette that is not in our config) produces an unknown-class error at build time. This guarantees the design system cannot drift.
+- Semantic color sets (`textColor`, `backgroundColor`, `borderColor`, `ringColor`) are in `extend` — they ADD semantic names (`bg-primary`, `text-brand-primary`, `border-focus`) on top of the primitive palette. Both primitives (`bg-neutral-500`) and semantics (`bg-primary`) must work.
 - Variants: use `cva` (class-variance-authority) for component variant definitions
 - Class merging: use `cn()` from `lib/utils.ts` for conditional and merged classes
 - Tokens: referenced as Tailwind classes — never raw hex/px values in className or style
 - Interaction states: Tailwind state modifiers (`hover:`, `focus-visible:`, `active:`, `disabled:`) — NEVER JS props
 - Focus ring: `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus`
-  (Novark Figma rysuje 2px ring stykający się z borderem — bez `ring-offset-*`. Każdy interaktywny komponent musi się trzymać tej konwencji.)
+  (Novark Figma draws a 2px ring touching the button border — no `ring-offset-*`. Every interactive component must follow this convention.)
 - Disabled: `disabled:opacity-40 disabled:cursor-not-allowed`
 - No custom CSS classes — prefer utility composition. The only CSS file is `tokens/tokens.css`
 

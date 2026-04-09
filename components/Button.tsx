@@ -67,7 +67,7 @@ const buttonVariants = cva(
           "bg-brand-secondary text-ondark-primary",
           "hover:bg-brand-tertiary",
           "focus-visible:bg-brand-tertiary",
-          "active:bg-brand-quarternary",
+          "active:bg-brand-quaternary",
         ),
         "primary-lemon": cn(
           "bg-lemon-primary text-primary",
@@ -79,13 +79,13 @@ const buttonVariants = cva(
           "bg-brand-subtle-secondary text-primary",
           "hover:bg-brand-subtle-tertiary",
           "focus-visible:bg-brand-subtle-tertiary",
-          "active:bg-brand-subtle-quarternary",
+          "active:bg-brand-subtle-quaternary",
         ),
         "secondary-round": cn(
           "bg-brand-subtle-secondary text-primary",
           "hover:bg-brand-subtle-tertiary",
           "focus-visible:bg-brand-subtle-tertiary",
-          "active:bg-brand-subtle-quarternary",
+          "active:bg-brand-subtle-quaternary",
         ),
         tertiary: cn(
           "bg-consistent-white text-secondary",

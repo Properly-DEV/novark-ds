@@ -38,9 +38,27 @@ novark-ds/
 ## Stack
 
 - **React 18** + **TypeScript**
-- **Tailwind CSS** — every value resolves to a design token via `tailwind.config.ts`
+- **Tailwind CSS** (strict mode — see below)
 - **class-variance-authority** + **clsx** + **tailwind-merge** for variants
 - **lucide-react** for icons
+
+## Strict Tailwind mode
+
+`tailwind.config.ts` runs in **strict mode**: primitive scales (`colors`, `spacing`, `borderRadius`, `fontFamily`, `fontSize`, `fontWeight`, `letterSpacing`, `strokeWidth`) are defined **outside** of `extend`, replacing the Tailwind defaults. Semantic color sets (`textColor`, `backgroundColor`, `borderColor`, `ringColor`) are in `extend`, adding semantic names on top of the primitive palette.
+
+**What this means for developers:**
+
+| Allowed | Rejected at build time |
+|---|---|
+| `bg-brand-secondary` (semantic) | `bg-blue-500` (Tailwind default) |
+| `bg-neutral-500` (our primitive) | `bg-slate-700` (Tailwind default) |
+| `p-lg`, `gap-md`, `h-6xl` (our spacing) | `p-4`, `gap-2`, `h-12` (Tailwind default) |
+| `text-button-1`, `text-body-3` (our typography) | `text-sm`, `text-base` (Tailwind default) |
+| `font-label` (our weight) | `font-medium`, `font-bold` (Tailwind default) |
+| `rounded-md`, `rounded-full` (our radius) | `rounded-lg`, `rounded-3xl` (Tailwind default) |
+| `stroke-icon-sm` (our stroke) | `stroke-2` (Tailwind default) |
+
+This prevents design-system drift — any attempt to reach for a default Tailwind class that is not part of Novark will fail compilation. The goal is that you *cannot* use anything that is not in the design.
 
 ## Theme
 
@@ -95,4 +113,4 @@ See [`CLAUDE.md`](./CLAUDE.md) for full conventions: naming, state rules, focus 
 
 ## Open items
 
-See [`TODO.md`](./TODO.md). Currently 1 item: Figma source has a typo in `bg-brand-quarternary` that needs fixing upstream.
+See [`TODO.md`](./TODO.md). Currently 1 item: the Figma source file has a typo (`quarternary` instead of `quaternary`) in four variables. The derived code files have been corrected, but the typo still needs to be fixed in Figma itself to prevent regression on the next re-export.

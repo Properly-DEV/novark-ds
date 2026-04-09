@@ -178,21 +178,21 @@
   --colors-fg-system-error-secondary:   #66090e;
 
   /* ── Background ─────────────────────────────────────────── */
-  --colors-bg-primary:     #ffffff;
-  --colors-bg-secondary:   #f8f8fa;
-  --colors-bg-tertiary:    #efeef2;
-  --colors-bg-quarternary: #e0dfe5;
+  --colors-bg-primary:    #ffffff;
+  --colors-bg-secondary:  #f8f8fa;
+  --colors-bg-tertiary:   #efeef2;
+  --colors-bg-quaternary: #e0dfe5;
 
-  --colors-bg-brand-primary:     #914eff;
-  --colors-bg-brand-secondary:   #763ed0;
-  --colors-bg-brand-tertiary:    #3f1f73;
-  --colors-bg-brand-quarternary: #2e1655;
-  --colors-bg-brand-quinary:     #150334;
+  --colors-bg-brand-primary:    #914eff;
+  --colors-bg-brand-secondary:  #763ed0;
+  --colors-bg-brand-tertiary:   #3f1f73;
+  --colors-bg-brand-quaternary: #2e1655;
+  --colors-bg-brand-quinary:    #150334;
 
-  --colors-bg-brand-subtle-primary:     #f6f2fc;
-  --colors-bg-brand-subtle-secondary:   #ede6fa;
-  --colors-bg-brand-subtle-tertiary:    #e5daf7;
-  --colors-bg-brand-subtle-quarternary: #d6c4f5;
+  --colors-bg-brand-subtle-primary:    #f6f2fc;
+  --colors-bg-brand-subtle-secondary:  #ede6fa;
+  --colors-bg-brand-subtle-tertiary:   #e5daf7;
+  --colors-bg-brand-subtle-quaternary: #d6c4f5;
 
   --colors-bg-consistent-white: #ffffff;
 
@@ -228,10 +228,10 @@
   --colors-bg-system-error-subtle-tertiary:   #fec3c5;
 
   /* ── Border ─────────────────────────────────────────────── */
-  --colors-border-primary:     #b7b3bf;
-  --colors-border-secondary:   #d5d3db;
-  --colors-border-tertiary:    #e0dfe5;
-  --colors-border-quarternary: #efeef2;
+  --colors-border-primary:    #b7b3bf;
+  --colors-border-secondary:  #d5d3db;
+  --colors-border-tertiary:   #e0dfe5;
+  --colors-border-quaternary: #efeef2;
 
   --colors-border-brand-primary:   #914eff;
   --colors-border-brand-secondary: #763ed0;

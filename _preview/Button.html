@@ -303,7 +303,7 @@
     .btn-primary-violet           { background: var(--colors-bg-brand-secondary);  color: var(--colors-fg-ondark-primary); }
     .btn-primary-violet:hover     { background: var(--colors-bg-brand-tertiary); }
     .btn-primary-violet:focus-visible { background: var(--colors-bg-brand-tertiary); }
-    .btn-primary-violet:active    { background: var(--colors-bg-brand-quarternary); }
+    .btn-primary-violet:active    { background: var(--colors-bg-brand-quaternary); }
 
     /* Primary Lemon */
     .btn-primary-lemon            { background: var(--colors-bg-lemon-primary);    color: var(--colors-fg-primary); }
@@ -315,13 +315,13 @@
     .btn-secondary                { background: var(--colors-bg-brand-subtle-secondary);   color: var(--colors-fg-primary); }
     .btn-secondary:hover          { background: var(--colors-bg-brand-subtle-tertiary); }
     .btn-secondary:focus-visible  { background: var(--colors-bg-brand-subtle-tertiary); }
-    .btn-secondary:active         { background: var(--colors-bg-brand-subtle-quarternary); }
+    .btn-secondary:active         { background: var(--colors-bg-brand-subtle-quaternary); }
 
     /* Secondary Round (same colors, full radius) */
     .btn-secondary-round          { background: var(--colors-bg-brand-subtle-secondary);   color: var(--colors-fg-primary); border-radius: var(--radius-full); }
     .btn-secondary-round:hover    { background: var(--colors-bg-brand-subtle-tertiary); }
     .btn-secondary-round:focus-visible { background: var(--colors-bg-brand-subtle-tertiary); }
-    .btn-secondary-round:active   { background: var(--colors-bg-brand-subtle-quarternary); }
+    .btn-secondary-round:active   { background: var(--colors-bg-brand-subtle-quaternary); }
 
     /* Tertiary */
     .btn-tertiary                 { background: var(--colors-bg-consistent-white); color: var(--colors-fg-secondary); border-radius: var(--radius-full); }
@@ -531,7 +531,7 @@
   <div class="section-title">Text-only · No icons</div>
 
   <div class="ctx-card ctx-light">
-    <div class="ctx-label">Wszystkie warianty bez ikon. v3: 16px węższe od v2 (gap zastąpił wewnętrzny wrapper padding).</div>
+    <div class="ctx-label">All variants rendered without left/right icons. The button hugs the text with outer padding only — no fake inner wrapper padding.</div>
     <div class="states-row">
       <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Button</span></button><span class="variant-label">primary-violet</span></div>
       <div class="state-cell"><button class="btn btn-primary-lemon btn-lg"><span>Button</span></button><span class="variant-label">primary-lemon</span></div>
@@ -543,15 +543,15 @@
   </div>
 
   <!-- ===== CASING REAL-WORLD TEST ===== -->
-  <div class="section-title">Casing · v3 usunął wymuszony `capitalize`</div>
+  <div class="section-title">Casing · no forced `capitalize`</div>
 
   <div class="ctx-card ctx-light">
-    <div class="ctx-label">Test case: labelki z niestandardowym casingiem (iOS, USD, e-mail). W v2 capitalize zepsułoby te stringi.</div>
+    <div class="ctx-label">Real-world labels with non-standard casing (iOS, USD, e-mail). The component never mutates the input — consumers write labels with intentional casing.</div>
     <div class="states-row">
-      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Pobierz na iOS</span></button><span class="variant-label">iOS — prawidłowo</span></div>
-      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Zapłać 99 USD</span></button><span class="variant-label">USD — prawidłowo</span></div>
-      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Zaloguj przez e-mail</span></button><span class="variant-label">e-mail — prawidłowo</span></div>
-      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>save changes</span></button><span class="variant-label">lowercase (intent devki)</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Download on iOS</span></button><span class="variant-label">iOS preserved</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Pay 99 USD</span></button><span class="variant-label">USD preserved</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Sign in with e-mail</span></button><span class="variant-label">e-mail preserved</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>save changes</span></button><span class="variant-label">lowercase on purpose</span></div>
     </div>
   </div>
 
@@ -668,7 +668,7 @@
           <td>primary-violet</td>
           <td><span class="spec-color-swatch" style="background:#763ed0"></span>--bg-brand-secondary</td>
           <td><span class="spec-color-swatch" style="background:#3f1f73"></span>--bg-brand-tertiary</td>
-          <td><span class="spec-color-swatch" style="background:#2e1655"></span>--bg-brand-quarternary</td>
+          <td><span class="spec-color-swatch" style="background:#2e1655"></span>--bg-brand-quaternary</td>
           <td><span class="spec-color-swatch" style="background:#ffffff"></span>--fg-ondark-primary</td>
         </tr>
         <tr>
@@ -682,7 +682,7 @@
           <td>secondary</td>
           <td><span class="spec-color-swatch" style="background:#ede6fa"></span>--bg-brand-subtle-secondary</td>
           <td><span class="spec-color-swatch" style="background:#e5daf7"></span>--bg-brand-subtle-tertiary</td>
-          <td><span class="spec-color-swatch" style="background:#d6c4f5"></span>--bg-brand-subtle-quarternary</td>
+          <td><span class="spec-color-swatch" style="background:#d6c4f5"></span>--bg-brand-subtle-quaternary</td>
           <td><span class="spec-color-swatch" style="background:#111113"></span>--fg-primary</td>
         </tr>
         <tr>
