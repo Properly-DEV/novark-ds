@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / build artifacts (not used now but standard)
+node_modules/
+dist/
+build/
+*.log
+
+# Internal working notes — not for handoff
+_designer/
+
+# Local editor
+.vscode/
+.idea/

@@ -1,0 +1,27 @@
+{
+  "icon-size": {
+    "$type": "number",
+    "$value": 20,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:152:12673",
+      "com.figma.scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "icon-stroke": {
+    "$type": "number",
+    "$value": 1.5,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:152:12674",
+      "com.figma.scopes": [
+        "STROKE_FLOAT"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "S 20"
+  }
+}

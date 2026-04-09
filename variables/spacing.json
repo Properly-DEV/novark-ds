@@ -1,0 +1,192 @@
+{
+  "spacing-none": {
+    "$type": "number",
+    "$value": 0,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1056",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-xxs": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1057",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-xs": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1058",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-sm": {
+    "$type": "number",
+    "$value": 6,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1071",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-md": {
+    "$type": "number",
+    "$value": 8,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1059",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-lg": {
+    "$type": "number",
+    "$value": 12,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1060",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-xl": {
+    "$type": "number",
+    "$value": 16,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1061",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-2xl": {
+    "$type": "number",
+    "$value": 20,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1062",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-3xl": {
+    "$type": "number",
+    "$value": 24,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1063",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-4xl": {
+    "$type": "number",
+    "$value": 32,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1064",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-5xl": {
+    "$type": "number",
+    "$value": 40,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1072",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-6xl": {
+    "$type": "number",
+    "$value": 48,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1065",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-7xl": {
+    "$type": "number",
+    "$value": 64,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1066",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-8xl": {
+    "$type": "number",
+    "$value": 80,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1067",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-9xl": {
+    "$type": "number",
+    "$value": 96,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1068",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-10xl": {
+    "$type": "number",
+    "$value": 128,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1069",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "spacing-11xl": {
+    "$type": "number",
+    "$value": 160,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:150:1070",
+      "com.figma.scopes": [
+        "GAP"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

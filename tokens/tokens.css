@@ -1,0 +1,426 @@
+/* ============================================================
+   Novark — Design Tokens
+   Source: Figma Variables (Issuer mode only) + Figma MCP styles
+   Generated: 2026-04-09
+   Notes:
+   - All text styles use letter-spacing: 0
+   - Display → font-weight-display (400)
+   - Heading / Label / Button → font-weight-label (500)
+   - Body → font-weight-body (500)
+   - No shadow tokens defined in this project.
+   ============================================================ */
+
+@font-face {
+  font-family: "NdaxCryptix";
+  src: url("../assets/fonts/NdaxCryptix.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+
+  /* ── Colors: Base ───────────────────────────────────────── */
+  --colors-base-white: #ffffff;
+  --colors-base-black: #000000;
+
+  /* ── Colors: Neutral ────────────────────────────────────── */
+  --colors-neutral-25:  #f8f8fa;
+  --colors-neutral-50:  #efeef2;
+  --colors-neutral-100: #e0dfe5;
+  --colors-neutral-200: #d5d3db;
+  --colors-neutral-300: #b7b3bf;
+  --colors-neutral-400: #a09aa9;
+  --colors-neutral-500: #888194;
+  --colors-neutral-600: #6e6978;
+  --colors-neutral-700: #55515c;
+  --colors-neutral-800: #2e2c33;
+  --colors-neutral-900: #19181b;
+  --colors-neutral-950: #111113;
+
+  /* ── Colors: Brand / Violet ─────────────────────────────── */
+  --colors-brand-violet-50:  #f6f2fc;
+  --colors-brand-violet-100: #ede6fa;
+  --colors-brand-violet-200: #e5daf7;
+  --colors-brand-violet-300: #d6c4f5;
+  --colors-brand-violet-400: #b080ff;
+  --colors-brand-violet-500: #914eff;
+  --colors-brand-violet-600: #763ed0;
+  --colors-brand-violet-700: #3f1f73;
+  --colors-brand-violet-800: #2e1655;
+  --colors-brand-violet-900: #150334;
+  --colors-brand-violet-950: #110329;
+
+  /* ── Colors: Brand / Lemon ──────────────────────────────── */
+  --colors-brand-lemon-100: #faffdb;
+  --colors-brand-lemon-200: #f6ffbd;
+  --colors-brand-lemon-300: #f0ff94;
+  --colors-brand-lemon-400: #e9ff61;
+  --colors-brand-lemon-500: #e2ff30;
+  --colors-brand-lemon-600: #b6cd26;
+  --colors-brand-lemon-700: #8a9c1d;
+  --colors-brand-lemon-800: #47510d;
+  --colors-brand-lemon-900: #2c3307;
+
+  /* ── Colors: System / Red ───────────────────────────────── */
+  --colors-red-50:  #ffebec;
+  --colors-red-100: #ffd6d8;
+  --colors-red-200: #fec3c5;
+  --colors-red-300: #fe9095;
+  --colors-red-400: #ff5e66;
+  --colors-red-500: #ff3d47;
+  --colors-red-600: #e5121d;
+  --colors-red-700: #bf131c;
+  --colors-red-800: #66090e;
+  --colors-red-900: #330305;
+
+  /* ── Colors: System / Green ─────────────────────────────── */
+  --colors-green-50:  #ebfff2;
+  --colors-green-100: #dcffe9;
+  --colors-green-200: #b8ffd3;
+  --colors-green-300: #99ffc0;
+  --colors-green-400: #7affad;
+  --colors-green-500: #4eff92;
+  --colors-green-600: #3ed076;
+  --colors-green-700: #2fa25b;
+  --colors-green-800: #0e7334;
+  --colors-green-900: #082d16;
+
+  /* ── Colors: System / Orange ────────────────────────────── */
+  --colors-orange-100: #fdfae3;
+  --colors-orange-200: #faf4b2;
+  --colors-orange-300: #f8ef8b;
+  --colors-orange-400: #f3e659;
+  --colors-orange-500: #f5e42c;
+  --colors-orange-600: #d9c700;
+  --colors-orange-700: #807500;
+  --colors-orange-800: #4d4600;
+  --colors-orange-900: #262300;
+
+  /* ── Colors: Alpha / White ──────────────────────────────── */
+  --colors-alpha-white-12: rgba(255, 255, 255, 0.12);
+  --colors-alpha-white-20: rgba(255, 255, 255, 0.2);
+  --colors-alpha-white-30: rgba(255, 255, 255, 0.3);
+  --colors-alpha-white-50: rgba(255, 255, 255, 0.5);
+  --colors-alpha-white-75: rgba(255, 255, 255, 0.75);
+
+  /* ── Colors: Alpha / Black ──────────────────────────────── */
+  --colors-alpha-black-12: rgba(0, 0, 0, 0.12);
+  --colors-alpha-black-20: rgba(0, 0, 0, 0.2);
+  --colors-alpha-black-30: rgba(0, 0, 0, 0.3);
+  --colors-alpha-black-50: rgba(0, 0, 0, 0.5);
+  --colors-alpha-black-75: rgba(0, 0, 0, 0.75);
+
+  /* ── Colors: Alpha / Brand Dark ─────────────────────────── */
+  --colors-alpha-brand-dark-12: rgba(46, 22, 85, 0.12);
+  --colors-alpha-brand-dark-20: rgba(46, 22, 85, 0.2);
+  --colors-alpha-brand-dark-30: rgba(46, 22, 85, 0.3);
+  --colors-alpha-brand-dark-40: rgba(46, 22, 85, 0.4);
+  --colors-alpha-brand-dark-50: rgba(46, 22, 85, 0.5);
+  --colors-alpha-brand-dark-60: rgba(46, 22, 85, 0.6);
+  --colors-alpha-brand-dark-75: rgba(46, 22, 85, 0.75);
+
+  /* ── Colors: Alpha / Brand ──────────────────────────────── */
+  --colors-alpha-brand-12: rgba(145, 78, 255, 0.12);
+  --colors-alpha-brand-20: rgba(145, 78, 255, 0.2);
+  --colors-alpha-brand-30: rgba(145, 78, 255, 0.3);
+  --colors-alpha-brand-50: rgba(145, 78, 255, 0.5);
+  --colors-alpha-brand-75: rgba(145, 78, 255, 0.75);
+
+  /* ── Colors: Alpha / System ─────────────────────────────── */
+  --colors-alpha-orange-20: rgba(248, 228, 139, 0.2);
+  --colors-alpha-orange-50: rgba(248, 228, 139, 0.5);
+  --colors-alpha-orange-75: rgba(248, 228, 139, 0.75);
+  --colors-alpha-green-20:  rgba(78, 255, 116, 0.2);
+  --colors-alpha-green-50:  rgba(78, 255, 116, 0.5);
+  --colors-alpha-green-75:  rgba(78, 255, 116, 0.75);
+  --colors-alpha-lemon-12:  rgba(226, 255, 48, 0.12);
+  --colors-alpha-red-20:    rgba(253, 131, 94, 0.2);
+  --colors-alpha-red-50:    rgba(253, 131, 94, 0.5);
+  --colors-alpha-red-75:    rgba(253, 131, 94, 0.75);
+
+  /* ============================================================
+     SEMANTIC TOKENS — Mode: Issuer (only mode)
+     ============================================================ */
+
+  /* ── Foreground ─────────────────────────────────────────── */
+  --colors-fg-primary:    #111113;
+  --colors-fg-secondary:  #2e2c33;
+  --colors-fg-tertiary:   #6e6978;
+  --colors-fg-quaternary: #888194;
+
+  --colors-fg-brand-primary:    #150334;
+  --colors-fg-brand-secondary:  #2e1655;
+  --colors-fg-brand-tertiary:   #3f1f73;
+  --colors-fg-brand-quaternary: #763ed0;
+
+  --colors-fg-brand-subtle-primary:   rgba(46, 22, 85, 0.75);
+  --colors-fg-brand-subtle-secondary: rgba(46, 22, 85, 0.6);
+  --colors-fg-brand-subtle-tertiary:  rgba(46, 22, 85, 0.4);
+
+  --colors-fg-ondark-primary:    #ffffff;
+  --colors-fg-ondark-secondary:  rgba(255, 255, 255, 0.75);
+  --colors-fg-ondark-tertiary:   rgba(255, 255, 255, 0.5);
+  --colors-fg-ondark-quaternary: rgba(255, 255, 255, 0.3);
+
+  --colors-fg-lemon-primary:   #e2ff30;
+  --colors-fg-lemon-secondary: #47510d;
+
+  --colors-fg-system-success-subtle:    #99ffc0;
+  --colors-fg-system-success-primary:   #2fa25b;
+  --colors-fg-system-success-secondary: #0e7334;
+  --colors-fg-system-success-tertiary:  #082d16;
+  --colors-fg-system-warning-subtle:    #f8ef8b;
+  --colors-fg-system-warning-primary:   #f5e42c;
+  --colors-fg-system-warning-secondary: #4d4600;
+  --colors-fg-system-error-subtle:      #fe9095;
+  --colors-fg-system-error-primary:     #ff3d47;
+  --colors-fg-system-error-secondary:   #66090e;
+
+  /* ── Background ─────────────────────────────────────────── */
+  --colors-bg-primary:     #ffffff;
+  --colors-bg-secondary:   #f8f8fa;
+  --colors-bg-tertiary:    #efeef2;
+  --colors-bg-quarternary: #e0dfe5;
+
+  --colors-bg-brand-primary:     #914eff;
+  --colors-bg-brand-secondary:   #763ed0;
+  --colors-bg-brand-tertiary:    #3f1f73;
+  --colors-bg-brand-quarternary: #2e1655;
+  --colors-bg-brand-quinary:     #150334;
+
+  --colors-bg-brand-subtle-primary:     #f6f2fc;
+  --colors-bg-brand-subtle-secondary:   #ede6fa;
+  --colors-bg-brand-subtle-tertiary:    #e5daf7;
+  --colors-bg-brand-subtle-quarternary: #d6c4f5;
+
+  --colors-bg-consistent-white: #ffffff;
+
+  --colors-bg-ondark-primary:   rgba(255, 255, 255, 0.12);
+  --colors-bg-ondark-secondary: rgba(255, 255, 255, 0.3);
+  --colors-bg-ondark-tertiary:  rgba(255, 255, 255, 0.5);
+
+  --colors-bg-lemon-primary:      #e2ff30;
+  --colors-bg-lemon-secondary:    #b6cd26;
+  --colors-bg-lemon-tertiary:     #8a9c1d;
+  --colors-bg-lemon-subtle:       #faffdb;
+  --colors-bg-lemon-subtle-hover: #f6ffbd;
+
+  --colors-bg-system-success-primary:           #7affad;
+  --colors-bg-system-success-secondary:         #2fa25b;
+  --colors-bg-system-success-tertiary:          #0e7334;
+  --colors-bg-system-success-subtle-primary:    #ebfff2;
+  --colors-bg-system-success-subtle-secondary:  #dcffe9;
+  --colors-bg-system-success-subtle-tertiary:   #b8ffd3;
+
+  --colors-bg-system-warning-primary:           #f5e42c;
+  --colors-bg-system-warning-secondary:         #d9c700;
+  --colors-bg-system-warning-tertiary:          #4d4600;
+  --colors-bg-system-warning-subtle-primary:    #fdfae3;
+  --colors-bg-system-warning-subtle-secondary:  #faf4b2;
+  --colors-bg-system-warning-subtle-tertiary:   #f8ef8b;
+
+  --colors-bg-system-error-primary:           #ff3d47;
+  --colors-bg-system-error-secondary:         #e5121d;
+  --colors-bg-system-error-tertiary:          #66090e;
+  --colors-bg-system-error-subtle-primary:    #ffebec;
+  --colors-bg-system-error-subtle-secondary:  #ffd6d8;
+  --colors-bg-system-error-subtle-tertiary:   #fec3c5;
+
+  /* ── Border ─────────────────────────────────────────────── */
+  --colors-border-primary:     #b7b3bf;
+  --colors-border-secondary:   #d5d3db;
+  --colors-border-tertiary:    #e0dfe5;
+  --colors-border-quarternary: #efeef2;
+
+  --colors-border-brand-primary:   #914eff;
+  --colors-border-brand-secondary: #763ed0;
+  --colors-border-brand-tertiary:  #3f1f73;
+
+  --colors-border-consistent-white: #ffffff;
+  --colors-border-focus: #b080ff;
+  --colors-border-badge: rgba(0, 0, 0, 0.12);
+
+  --colors-border-system-success-primary:   #7affad;
+  --colors-border-system-success-secondary: #3ed076;
+  --colors-border-system-warning-primary:   #f3e659;
+  --colors-border-system-warning-secondary: #f5e42c;
+  --colors-border-system-error-primary:     #ff3d47;
+  --colors-border-system-error-secondary:   #e5121d;
+
+  /* ── Alpha (semantic) ───────────────────────────────────── */
+  --colors-alpha-bg-a-white-12: rgba(255, 255, 255, 0.12);
+  --colors-alpha-bg-a-white-20: rgba(255, 255, 255, 0.2);
+  --colors-alpha-bg-a-white-30: rgba(255, 255, 255, 0.3);
+  --colors-alpha-bg-a-brand-12: rgba(145, 78, 255, 0.12);
+  --colors-alpha-bg-a-brand-20: rgba(145, 78, 255, 0.2);
+  --colors-alpha-bg-a-brand-30: rgba(145, 78, 255, 0.3);
+  --colors-alpha-bg-a-orange-20: rgba(248, 228, 139, 0.2);
+  --colors-alpha-bg-a-green-20:  rgba(78, 255, 116, 0.2);
+  --colors-alpha-bg-a-red-20:    rgba(253, 131, 94, 0.2);
+  --colors-alpha-bg-a-black-12:  rgba(0, 0, 0, 0.12);
+  --colors-alpha-bg-a-black-20:  rgba(0, 0, 0, 0.2);
+  --colors-alpha-bg-a-black-30:  rgba(0, 0, 0, 0.3);
+
+  /* ── Components ─────────────────────────────────────────── */
+  --colors-bg-section-inverse: #121212;
+  --colors-bg-badge-neutral:   #f6f2fc;
+  --colors-iconbox-bg:         #f0ff94;
+  --colors-bg-dialog:          rgba(0, 0, 0, 0.2);
+
+  --colors-buttons-primary-button-tertiary-fg-hover:  #ede6fa;
+  --colors-buttons-primary-link-fg-default:           #d6c4f5;
+  --colors-buttons-primary-button-secondary-fg-hover: #b7b3bf;
+  --colors-buttons-primary-border-alpha-green:  rgba(78, 255, 116, 0.2);
+  --colors-buttons-primary-border-alpha-red:    rgba(253, 131, 94, 0.2);
+  --colors-buttons-primary-border-alpha-orange: rgba(248, 228, 139, 0.2);
+  --colors-buttons-primary-border-alpha-brand:  rgba(145, 78, 255, 0.12);
+  --colors-buttons-primary-border-alpha-lime:   rgba(226, 255, 48, 0.12);
+
+  /* ── Utilities ──────────────────────────────────────────── */
+  --colors-bg-section: #ffffff;
+
+  /* ── Chart ──────────────────────────────────────────────── */
+  --colors-chart-1:  #3f1f73;
+  --colors-chart-2:  #8d47ff;
+  --colors-chart-3:  #b4edb8;
+  --colors-chart-4:  #0079a3;
+  --colors-chart-5:  #31493c;
+  --colors-chart-6:  #309073;
+  --colors-chart-7:  #c099ff;
+  --colors-chart-8:  #b4dfed;
+  --colors-chart-9:  #d3d6e2;
+  --colors-chart-10: #e2ff30;
+
+  /* ── Spacing ────────────────────────────────────────────── */
+  --spacing-none: 0px;
+  --spacing-xxs:  2px;
+  --spacing-xs:   4px;
+  --spacing-sm:   6px;
+  --spacing-md:   8px;
+  --spacing-lg:   12px;
+  --spacing-xl:   16px;
+  --spacing-2xl:  20px;
+  --spacing-3xl:  24px;
+  --spacing-4xl:  32px;
+  --spacing-5xl:  40px;
+  --spacing-6xl:  48px;
+  --spacing-7xl:  64px;
+  --spacing-8xl:  80px;
+  --spacing-9xl:  96px;
+  --spacing-10xl: 128px;
+  --spacing-11xl: 160px;
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --radius-none: 0px;
+  --radius-xxs:  4px;
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  36px;
+  --radius-full: 9999px;
+
+  /* ── Icons — exact Figma variable values ────────────────────
+     Mode XXS / XS / S / M. Use these for Lucide:
+     <Icon size={var(--icon-size-xs)} strokeWidth={var(--icon-stroke-xs)} />
+     ─────────────────────────────────────────────────────── */
+  --icon-size-xxs:   12;
+  --icon-stroke-xxs: 1;
+
+  --icon-size-xs:    16;
+  --icon-stroke-xs:  1.33;
+
+  --icon-size-sm:    20;
+  --icon-stroke-sm:  1.5;
+
+  --icon-size-md:    24;
+  --icon-stroke-md:  2;
+
+  /* px variants — for CSS width/height usage */
+  --icon-size-xxs-px: 12px;
+  --icon-size-xs-px:  16px;
+  --icon-size-sm-px:  20px;
+  --icon-size-md-px:  24px;
+
+  /* ── Typography — Font Family ───────────────────────────── */
+  --font-family-headings: "NdaxCryptix", sans-serif;
+  --font-family-body:     "NdaxCryptix", sans-serif;
+
+  /* ── Typography — Font Weights (from variables) ─────────── */
+  --font-weight-display: 400;
+  --font-weight-body:    500;
+  --font-weight-label:   500;
+
+  /* ── Typography — Letter Spacing (all styles = 0) ───────── */
+  --letter-spacing-default: 0;
+
+  /* ── Typography — Web (default, ≥768px) ─────────────────── */
+  --display-1-size:        116px;  --display-1-line-height: 116px;
+  --display-2-size:        72px;   --display-2-line-height: 72px;
+  --display-3-size:        56px;   --display-3-line-height: 56px;
+
+  --heading-1-size:        56px;   --heading-1-line-height: 64px;
+  --heading-2-size:        42px;   --heading-2-line-height: 48px;
+  --heading-3-size:        32px;   --heading-3-line-height: 40px;
+  --heading-4-size:        24px;   --heading-4-line-height: 28px;
+  --heading-5-size:        20px;   --heading-5-line-height: 24px;
+
+  --body-1-size:           24px;   --body-1-line-height: 36px;
+  --body-2-size:           20px;   --body-2-line-height: 30px;
+  --body-3-size:           18px;   --body-3-line-height: 28px;
+  --body-4-size:           16px;   --body-4-line-height: 24px;
+  --body-5-size:           14px;   --body-5-line-height: 20px;
+  --body-6-size:           12px;   --body-6-line-height: 18px;
+  --body-7-size:           10px;   --body-7-line-height: 12px;
+
+  --label-1-size:          24px;   --label-1-line-height: 28px;
+  --label-2-size:          20px;   --label-2-line-height: 24px;
+  --label-3-size:          18px;   --label-3-line-height: 22px;
+  --label-4-size:          16px;   --label-4-line-height: 18px;
+  --label-5-size:          14px;   --label-5-line-height: 16px;
+  --label-6-size:          12px;   --label-6-line-height: 14px;
+  --label-7-size:          11px;   --label-7-line-height: 12px;
+
+  /* ── Typography — Button (from Figma text styles) ───────── */
+  /* weight: font-weight-label (500), family: body, letter-spacing: 0 */
+  --button-1-size:         16px;   --button-1-line-height: 20px;
+  --button-2-size:         14px;   --button-2-line-height: 16px;
+  --button-3-size:         12px;   --button-3-line-height: 14px;
+
+  /* ── Shadows ────────────────────────────────────────────── */
+  /* No shadow tokens in this project. */
+
+}
+
+/* ── Typography — Mobile (<768px) override ────────────────── */
+@media (max-width: 767px) {
+  :root {
+    --display-1-size:   38px;  --display-1-line-height: 38px;
+    --display-2-size:   30px;  --display-2-line-height: 30px;
+    --display-3-size:   24px;  --display-3-line-height: 24px;
+
+    --heading-1-size:   42px;  --heading-1-line-height: 48px;
+    --heading-2-size:   32px;  --heading-2-line-height: 40px;
+    --heading-3-size:   24px;  --heading-3-line-height: 28px;
+    --heading-4-size:   20px;  --heading-4-line-height: 24px;
+    --heading-5-size:   18px;  --heading-5-line-height: 20px;
+
+    --body-1-size:      20px;  --body-1-line-height: 30px;
+    --body-2-size:      18px;  --body-2-line-height: 28px;
+    --body-3-size:      16px;  --body-3-line-height: 24px;
+    --body-4-size:      14px;  --body-4-line-height: 20px;
+    --body-5-size:      12px;  --body-5-line-height: 18px;
+    --body-6-size:      10px;  --body-6-line-height: 14px;
+    --body-7-size:      10px;  --body-7-line-height: 12px;
+
+    --label-1-size:     20px;  --label-1-line-height: 24px;
+    --label-2-size:     18px;  --label-2-line-height: 22px;
+    --label-3-size:     16px;  --label-3-line-height: 18px;
+    --label-4-size:     14px;  --label-4-line-height: 16px;
+    --label-5-size:     12px;  --label-5-line-height: 14px;
+    --label-6-size:     11px;  --label-6-line-height: 12px;
+    --label-7-size:     11px;  --label-7-line-height: 12px;
+  }
+}

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview — Button</title>
+
+  <!-- Design tokens (the same file Tailwind reads from) -->
+  <link rel="stylesheet" href="../tokens/tokens.css">
+
+  <style>
+    /* ============================================================
+       PREVIEW CHROME — system fonts, dark page bg
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --chrome-fg-strong: rgba(255, 255, 255, 0.9);
+      --chrome-fg-mid:    rgba(255, 255, 255, 0.6);
+      --chrome-fg-weak:   rgba(255, 255, 255, 0.4);
+      --chrome-fg-dim:    rgba(255, 255, 255, 0.3);
+      --chrome-divider:   rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      background: #0b0b0d;
+      padding: 40px;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--chrome-fg-mid);
+    }
+
+    .preview-header { margin-bottom: 48px; }
+    .preview-header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--chrome-fg-strong);
+      margin-bottom: 8px;
+    }
+    .preview-header .preview-meta {
+      font-size: 12px;
+      color: var(--chrome-fg-weak);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .preview-header .preview-audit {
+      font-size: 12px;
+      color: rgba(126, 217, 87, 0.85);
+      margin-top: 6px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--chrome-fg-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      margin-top: 56px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--chrome-divider);
+    }
+
+    /* Context cards — light vs dark surface */
+    .ctx-card {
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .ctx-card.ctx-light { background: var(--colors-bg-primary); }
+    .ctx-card.ctx-dark  { background: var(--colors-bg-section-inverse); }
+    .ctx-card .ctx-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    .ctx-card.ctx-light .ctx-label { color: #19181b; }
+    .ctx-card.ctx-dark .ctx-label  { color: #fff; }
+
+    /* Variant matrix */
+    .variant-matrix {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 24px 18px;
+    }
+    .variant-matrix th {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--chrome-fg-weak);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding-bottom: 4px;
+    }
+    .ctx-card.ctx-light .variant-matrix th { color: rgba(0, 0, 0, 0.45); }
+    .variant-matrix td { vertical-align: middle; padding: 4px 0; }
+    .variant-row-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--chrome-fg-weak);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .ctx-card.ctx-light .variant-row-label { color: rgba(0, 0, 0, 0.55); }
+
+    /* Label pills */
+    .variant-label {
+      display: inline-block;
+      background: rgba(128, 128, 128, 0.3);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+
+    /* Interaction states */
+    .states-block { margin-bottom: 32px; }
+    .states-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--chrome-fg-mid);
+      margin-bottom: 12px;
+    }
+    .states-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-end;
+    }
+    .state-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* Specs tables */
+    .spec-block { margin-bottom: 32px; }
+    .spec-block-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--chrome-fg-mid);
+      margin-bottom: 12px;
+    }
+    .spec-table {
+      width: 100%;
+      max-width: 720px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .spec-table th {
+      text-align: left;
+      font-weight: 500;
+      color: var(--chrome-fg-weak);
+      padding: 6px 16px 6px 0;
+      border-bottom: 1px solid var(--chrome-divider);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+    .spec-table td {
+      padding: 6px 16px 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.7);
+      vertical-align: top;
+    }
+    .spec-table td:first-child {
+      color: var(--chrome-fg-weak);
+      white-space: nowrap;
+    }
+    .spec-table td:nth-child(2),
+    .spec-table td:nth-child(3) {
+      font-family: "SF Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 11px;
+    }
+    .spec-table td:nth-child(3) { color: var(--chrome-fg-dim); }
+    .spec-group-label td {
+      border-bottom: none;
+      padding-top: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.35);
+    }
+    .spec-color-swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ============================================================
+       BUTTON COMPONENT — exact mirror of Button.tsx (Tailwind classes
+       resolved to plain CSS using the same tokens.css custom props).
+       ============================================================ */
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family-body);
+      /* v3: no text-transform — consumers write labels with intentional casing */
+      white-space: nowrap;
+      user-select: none;
+      transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+      border: 1px solid transparent;
+      cursor: pointer;
+      letter-spacing: var(--letter-spacing-default);
+      font-weight: var(--font-weight-label);
+    }
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--colors-border-focus);
+    }
+    .btn:disabled,
+    .btn[data-loading="true"] {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn svg {
+      flex-shrink: 0;
+      pointer-events: none;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* v3: text wrapper has no padding — spacing comes from button `gap-*` */
+    /* v3: loading hides every direct child EXCEPT the spinner */
+    .btn[data-loading="true"] > svg:not(.btn-spinner),
+    .btn[data-loading="true"] > span {
+      opacity: 0;
+    }
+    .btn .btn-spinner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* ── SIZES (v3: `gap` replaces inner wrapper padding) ─────── */
+    .btn-lg {
+      height: var(--spacing-6xl);                         /* 48 */
+      padding-inline: var(--spacing-lg);                  /* 12 */
+      gap: var(--spacing-md);                             /* 8  */
+      border-radius: var(--radius-md);                    /* 12 */
+      font-size: var(--button-1-size);                    /* 16 */
+      line-height: var(--button-1-line-height);           /* 20 */
+    }
+    .btn-lg svg:not(.btn-spinner) { width: var(--icon-size-sm-px); height: var(--icon-size-sm-px); stroke-width: var(--icon-stroke-sm); }
+    .btn-lg .btn-spinner { width: var(--icon-size-sm-px); height: var(--icon-size-sm-px); stroke-width: var(--icon-stroke-sm); }
+
+    .btn-md {
+      height: var(--spacing-5xl);                         /* 40 */
+      padding-inline: var(--spacing-lg);                  /* 12 */
+      gap: var(--spacing-md);                             /* 8  */
+      border-radius: var(--radius-md);                    /* 12 */
+      font-size: var(--button-2-size);                    /* 14 */
+      line-height: var(--button-2-line-height);           /* 16 */
+    }
+    .btn-md svg:not(.btn-spinner) { width: var(--icon-size-xs-px); height: var(--icon-size-xs-px); stroke-width: var(--icon-stroke-xs); }
+    .btn-md .btn-spinner { width: var(--icon-size-xs-px); height: var(--icon-size-xs-px); stroke-width: var(--icon-stroke-xs); }
+
+    .btn-sm {
+      height: var(--spacing-4xl);                         /* 32 */
+      padding-inline: var(--spacing-md);                  /* 8  */
+      gap: var(--spacing-xs);                             /* 4  */
+      border-radius: var(--radius-sm);                    /* 8  */
+      font-size: var(--button-3-size);                    /* 12 */
+      line-height: var(--button-3-line-height);           /* 14 */
+    }
+    .btn-sm svg:not(.btn-spinner) { width: var(--icon-size-xxs-px); height: var(--icon-size-xxs-px); stroke-width: var(--icon-stroke-xxs); }
+    .btn-sm .btn-spinner { width: var(--icon-size-xxs-px); height: var(--icon-size-xxs-px); stroke-width: var(--icon-stroke-xxs); }
+
+    .btn-xs {
+      height: var(--spacing-3xl);                         /* 24 */
+      padding-inline: var(--spacing-xs);                  /* 4  */
+      gap: var(--spacing-xs);                             /* 4  */
+      border-radius: var(--radius-xs);                    /* 6  */
+      font-size: var(--button-3-size);                    /* 12 */
+      line-height: var(--button-3-line-height);           /* 14 */
+    }
+    .btn-xs svg:not(.btn-spinner) { width: var(--icon-size-xxs-px); height: var(--icon-size-xxs-px); stroke-width: var(--icon-stroke-xxs); }
+    .btn-xs .btn-spinner { width: var(--icon-size-xxs-px); height: var(--icon-size-xxs-px); stroke-width: var(--icon-stroke-xxs); }
+
+    /* ── VARIANTS ────────────────────────────────────────────── */
+    /* Primary Violet */
+    .btn-primary-violet           { background: var(--colors-bg-brand-secondary);  color: var(--colors-fg-ondark-primary); }
+    .btn-primary-violet:hover     { background: var(--colors-bg-brand-tertiary); }
+    .btn-primary-violet:focus-visible { background: var(--colors-bg-brand-tertiary); }
+    .btn-primary-violet:active    { background: var(--colors-bg-brand-quarternary); }
+
+    /* Primary Lemon */
+    .btn-primary-lemon            { background: var(--colors-bg-lemon-primary);    color: var(--colors-fg-primary); }
+    .btn-primary-lemon:hover      { background: var(--colors-bg-lemon-secondary); }
+    .btn-primary-lemon:focus-visible { background: var(--colors-bg-lemon-secondary); }
+    .btn-primary-lemon:active     { background: var(--colors-bg-lemon-tertiary); }
+
+    /* Secondary */
+    .btn-secondary                { background: var(--colors-bg-brand-subtle-secondary);   color: var(--colors-fg-primary); }
+    .btn-secondary:hover          { background: var(--colors-bg-brand-subtle-tertiary); }
+    .btn-secondary:focus-visible  { background: var(--colors-bg-brand-subtle-tertiary); }
+    .btn-secondary:active         { background: var(--colors-bg-brand-subtle-quarternary); }
+
+    /* Secondary Round (same colors, full radius) */
+    .btn-secondary-round          { background: var(--colors-bg-brand-subtle-secondary);   color: var(--colors-fg-primary); border-radius: var(--radius-full); }
+    .btn-secondary-round:hover    { background: var(--colors-bg-brand-subtle-tertiary); }
+    .btn-secondary-round:focus-visible { background: var(--colors-bg-brand-subtle-tertiary); }
+    .btn-secondary-round:active   { background: var(--colors-bg-brand-subtle-quarternary); }
+
+    /* Tertiary */
+    .btn-tertiary                 { background: var(--colors-bg-consistent-white); color: var(--colors-fg-secondary); border-radius: var(--radius-full); }
+    .btn-tertiary:hover           { border-color: var(--colors-border-brand-primary); color: var(--colors-fg-primary); }
+    .btn-tertiary:focus-visible   { border-color: var(--colors-border-brand-primary); color: var(--colors-fg-primary); }
+    .btn-tertiary:active          { background: var(--colors-bg-tertiary); border-color: var(--colors-border-brand-primary); color: var(--colors-fg-tertiary); }
+
+    /* Quaternary */
+    .btn-quaternary               { background: transparent; color: var(--colors-fg-brand-quaternary); }
+    .btn-quaternary:hover         { color: var(--colors-fg-brand-tertiary); }
+    .btn-quaternary:focus-visible { color: var(--colors-fg-brand-tertiary); }
+    .btn-quaternary:active        { color: var(--colors-fg-brand-secondary); }
+
+    /* Secondary Dark */
+    .btn-secondary-dark           { background: var(--colors-alpha-bg-a-white-12); color: var(--colors-fg-ondark-primary); }
+    .btn-secondary-dark:hover     { background: var(--colors-alpha-bg-a-white-20); }
+    .btn-secondary-dark:focus-visible { background: var(--colors-alpha-bg-a-white-20); }
+    .btn-secondary-dark:active    { background: var(--colors-alpha-bg-a-white-30); }
+
+    /* Secondary Round Dark */
+    .btn-secondary-round-dark     { background: var(--colors-alpha-bg-a-white-12); color: var(--colors-fg-ondark-primary); border-radius: var(--radius-full); }
+    .btn-secondary-round-dark:hover { background: var(--colors-alpha-bg-a-white-20); }
+    .btn-secondary-round-dark:focus-visible { background: var(--colors-alpha-bg-a-white-20); }
+    .btn-secondary-round-dark:active { background: var(--colors-alpha-bg-a-white-30); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="preview-header">
+    <h1>Button</h1>
+    <div class="preview-meta">
+      <span>components/Button.tsx</span>
+      <span>Generated 2026-04-09 · v3</span>
+      <span>8 variants × 4 sizes × 6 states</span>
+    </div>
+    <div class="preview-audit">Audit v3 (post-Gemini): 0 open · 4 Gemini findings fixed · 1 Figma typo gap in TODO.md</div>
+  </div>
+
+  <!-- ===== VARIANT MATRIX ===== -->
+  <div class="section-title">Variants — Light context</div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">bg-primary (#ffffff) — issuer mode</div>
+    <table class="variant-matrix">
+      <thead>
+        <tr>
+          <th></th>
+          <th>xs · 24h</th>
+          <th>sm · 32h</th>
+          <th>md · 40h</th>
+          <th>lg · 48h</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="variant-row-label">primary-violet</span></td>
+          <td><button class="btn btn-primary-violet btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-violet btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-violet btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-violet btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label">primary-lemon</span></td>
+          <td><button class="btn btn-primary-lemon btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-lemon btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-lemon btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-primary-lemon btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label">secondary</span></td>
+          <td><button class="btn btn-secondary btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label">secondary-round</span></td>
+          <td><button class="btn btn-secondary-round btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label">tertiary</span></td>
+          <td><button class="btn btn-tertiary btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-tertiary btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-tertiary btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-tertiary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label">quaternary</span></td>
+          <td><button class="btn btn-quaternary btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-quaternary btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-quaternary btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-quaternary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Variants — Dark context</div>
+
+  <div class="ctx-card ctx-dark">
+    <div class="ctx-label">bg-section-inverse (#121212)</div>
+    <table class="variant-matrix">
+      <thead>
+        <tr>
+          <th></th>
+          <th>xs · 24h</th>
+          <th>sm · 32h</th>
+          <th>md · 40h</th>
+          <th>lg · 48h</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="variant-row-label" style="color: rgba(255,255,255,0.6);">secondary-dark</span></td>
+          <td><button class="btn btn-secondary-dark btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-dark btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-dark btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-dark btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+        <tr>
+          <td><span class="variant-row-label" style="color: rgba(255,255,255,0.6);">secondary-round-dark</span></td>
+          <td><button class="btn btn-secondary-round-dark btn-xs"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round-dark btn-sm"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round-dark btn-md"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+          <td><button class="btn btn-secondary-round-dark btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== INTERACTION STATES ===== -->
+  <div class="section-title">Interaction States · size = lg</div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">primary-violet — hover the buttons, click them, tab into them</div>
+    <div class="states-row">
+      <div class="state-cell">
+        <button class="btn btn-primary-violet btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+        <span class="variant-label">default</span>
+      </div>
+      <div class="state-cell">
+        <button class="btn btn-primary-violet btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+        <span class="variant-label">disabled</span>
+      </div>
+      <div class="state-cell">
+        <button class="btn btn-primary-violet btn-lg" data-loading="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          <span>Button</span>
+          <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          <svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        </button>
+        <span class="variant-label">loading</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">primary-lemon</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-primary-lemon btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">default</span></div>
+      <div class="state-cell"><button class="btn btn-primary-lemon btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">disabled</span></div>
+      <div class="state-cell"><button class="btn btn-primary-lemon btn-lg" data-loading="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="variant-label">loading</span></div>
+    </div>
+  </div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">secondary</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-secondary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">default</span></div>
+      <div class="state-cell"><button class="btn btn-secondary btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">disabled</span></div>
+      <div class="state-cell"><button class="btn btn-secondary btn-lg" data-loading="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="variant-label">loading</span></div>
+    </div>
+  </div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">tertiary — note the border appears on hover/focus/active</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-tertiary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">default</span></div>
+      <div class="state-cell"><button class="btn btn-tertiary btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">disabled</span></div>
+      <div class="state-cell"><button class="btn btn-tertiary btn-lg" data-loading="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="variant-label">loading</span></div>
+    </div>
+  </div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">quaternary — text-only, transparent background</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-quaternary btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">default</span></div>
+      <div class="state-cell"><button class="btn btn-quaternary btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">disabled</span></div>
+      <div class="state-cell"><button class="btn btn-quaternary btn-lg" data-loading="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="variant-label">loading</span></div>
+    </div>
+  </div>
+
+  <div class="ctx-card ctx-dark">
+    <div class="ctx-label" style="color:#fff;">secondary-dark</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-secondary-dark btn-lg"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">default</span></div>
+      <div class="state-cell"><button class="btn btn-secondary-dark btn-lg" disabled><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button><span class="variant-label">disabled</span></div>
+      <div class="state-cell"><button class="btn btn-secondary-dark btn-lg" data-loading="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg><span>Button</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><svg class="btn-spinner" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></button><span class="variant-label">loading</span></div>
+    </div>
+  </div>
+
+  <!-- ===== TEXT-ONLY (no icons) ===== -->
+  <div class="section-title">Text-only · No icons</div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">Wszystkie warianty bez ikon. v3: 16px węższe od v2 (gap zastąpił wewnętrzny wrapper padding).</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Button</span></button><span class="variant-label">primary-violet</span></div>
+      <div class="state-cell"><button class="btn btn-primary-lemon btn-lg"><span>Button</span></button><span class="variant-label">primary-lemon</span></div>
+      <div class="state-cell"><button class="btn btn-secondary btn-lg"><span>Button</span></button><span class="variant-label">secondary</span></div>
+      <div class="state-cell"><button class="btn btn-secondary-round btn-lg"><span>Button</span></button><span class="variant-label">secondary-round</span></div>
+      <div class="state-cell"><button class="btn btn-tertiary btn-lg"><span>Button</span></button><span class="variant-label">tertiary</span></div>
+      <div class="state-cell"><button class="btn btn-quaternary btn-lg"><span>Button</span></button><span class="variant-label">quaternary</span></div>
+    </div>
+  </div>
+
+  <!-- ===== CASING REAL-WORLD TEST ===== -->
+  <div class="section-title">Casing · v3 usunął wymuszony `capitalize`</div>
+
+  <div class="ctx-card ctx-light">
+    <div class="ctx-label">Test case: labelki z niestandardowym casingiem (iOS, USD, e-mail). W v2 capitalize zepsułoby te stringi.</div>
+    <div class="states-row">
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Pobierz na iOS</span></button><span class="variant-label">iOS — prawidłowo</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Zapłać 99 USD</span></button><span class="variant-label">USD — prawidłowo</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>Zaloguj przez e-mail</span></button><span class="variant-label">e-mail — prawidłowo</span></div>
+      <div class="state-cell"><button class="btn btn-primary-violet btn-lg"><span>save changes</span></button><span class="variant-label">lowercase (intent devki)</span></div>
+    </div>
+  </div>
+
+  <!-- ===== DESIGN SPECS ===== -->
+  <div class="section-title">Design Specs — per size</div>
+
+  <div class="spec-block">
+    <div class="spec-block-title">size = lg (48h)</div>
+    <table class="spec-table">
+      <thead>
+        <tr><th>Property</th><th>Resolved value</th><th>Token / CSS variable</th></tr>
+      </thead>
+      <tbody>
+        <tr class="spec-group-label"><td colspan="3">Spacing &amp; dimensions</td></tr>
+        <tr><td>height</td><td>48px</td><td>--spacing-6xl</td></tr>
+        <tr><td>padding-inline</td><td>12px</td><td>--spacing-lg</td></tr>
+        <tr><td>padding-block</td><td>—</td><td>(centered via items-center)</td></tr>
+        <tr><td>gap (icon ↔ text)</td><td>8px</td><td>--spacing-md</td></tr>
+        <tr><td>border-radius</td><td>12px</td><td>--radius-md  (Round → --radius-full 9999px)</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Typography</td></tr>
+        <tr><td>font-family</td><td>NdaxCryptix</td><td>--font-family-body</td></tr>
+        <tr><td>font-size</td><td>16px</td><td>--button-1-size</td></tr>
+        <tr><td>line-height</td><td>20px</td><td>--button-1-line-height</td></tr>
+        <tr><td>font-weight</td><td>500</td><td>--font-weight-label</td></tr>
+        <tr><td>letter-spacing</td><td>0</td><td>--letter-spacing-default</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Icon (sm)</td></tr>
+        <tr><td>icon size</td><td>20px</td><td>--icon-size-sm-px</td></tr>
+        <tr><td>icon stroke-width</td><td>1.5</td><td>--icon-stroke-sm</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-block-title">size = md (40h)</div>
+    <table class="spec-table">
+      <thead><tr><th>Property</th><th>Resolved value</th><th>Token / CSS variable</th></tr></thead>
+      <tbody>
+        <tr class="spec-group-label"><td colspan="3">Spacing &amp; dimensions</td></tr>
+        <tr><td>height</td><td>40px</td><td>--spacing-5xl</td></tr>
+        <tr><td>padding-inline</td><td>12px</td><td>--spacing-lg</td></tr>
+        <tr><td>padding-block</td><td>—</td><td>(centered via items-center)</td></tr>
+        <tr><td>gap (icon ↔ text)</td><td>8px</td><td>--spacing-md</td></tr>
+        <tr><td>border-radius</td><td>12px</td><td>--radius-md</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Typography</td></tr>
+        <tr><td>font-size</td><td>14px</td><td>--button-2-size</td></tr>
+        <tr><td>line-height</td><td>16px</td><td>--button-2-line-height</td></tr>
+        <tr><td>font-weight</td><td>500</td><td>--font-weight-label</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Icon (xs)</td></tr>
+        <tr><td>icon size</td><td>16px</td><td>--icon-size-xs-px</td></tr>
+        <tr><td>icon stroke-width</td><td>1.33</td><td>--icon-stroke-xs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-block-title">size = sm (32h)</div>
+    <table class="spec-table">
+      <thead><tr><th>Property</th><th>Resolved value</th><th>Token / CSS variable</th></tr></thead>
+      <tbody>
+        <tr class="spec-group-label"><td colspan="3">Spacing &amp; dimensions</td></tr>
+        <tr><td>height</td><td>32px</td><td>--spacing-4xl</td></tr>
+        <tr><td>padding-inline</td><td>8px</td><td>--spacing-md</td></tr>
+        <tr><td>padding-block</td><td>—</td><td>(centered via items-center)</td></tr>
+        <tr><td>gap (icon ↔ text)</td><td>4px</td><td>--spacing-xs</td></tr>
+        <tr><td>border-radius</td><td>8px</td><td>--radius-sm</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Typography</td></tr>
+        <tr><td>font-size</td><td>12px</td><td>--button-3-size</td></tr>
+        <tr><td>line-height</td><td>14px</td><td>--button-3-line-height</td></tr>
+        <tr><td>font-weight</td><td>500</td><td>--font-weight-label</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Icon (xxs)</td></tr>
+        <tr><td>icon size</td><td>12px</td><td>--icon-size-xxs-px</td></tr>
+        <tr><td>icon stroke-width</td><td>1</td><td>--icon-stroke-xxs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spec-block">
+    <div class="spec-block-title">size = xs (24h)</div>
+    <table class="spec-table">
+      <thead><tr><th>Property</th><th>Resolved value</th><th>Token / CSS variable</th></tr></thead>
+      <tbody>
+        <tr class="spec-group-label"><td colspan="3">Spacing &amp; dimensions</td></tr>
+        <tr><td>height</td><td>24px</td><td>--spacing-3xl</td></tr>
+        <tr><td>padding-inline</td><td>4px</td><td>--spacing-xs</td></tr>
+        <tr><td>padding-block</td><td>—</td><td>(centered via items-center)</td></tr>
+        <tr><td>gap (icon ↔ text)</td><td>4px</td><td>--spacing-xs</td></tr>
+        <tr><td>border-radius</td><td>6px</td><td>--radius-xs</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Typography</td></tr>
+        <tr><td>font-size</td><td>12px</td><td>--button-3-size</td></tr>
+        <tr><td>line-height</td><td>14px</td><td>--button-3-line-height</td></tr>
+        <tr class="spec-group-label"><td colspan="3">Icon (xxs)</td></tr>
+        <tr><td>icon size</td><td>12px</td><td>--icon-size-xxs-px</td></tr>
+        <tr><td>icon stroke-width</td><td>1</td><td>--icon-stroke-xxs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== COLORS PER VARIANT ===== -->
+  <div class="section-title">Colors — per variant (default · hover · active)</div>
+
+  <div class="spec-block">
+    <table class="spec-table" style="max-width: 920px;">
+      <thead>
+        <tr>
+          <th>Variant</th>
+          <th>Background (default)</th>
+          <th>Background (hover)</th>
+          <th>Background (active)</th>
+          <th>Text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>primary-violet</td>
+          <td><span class="spec-color-swatch" style="background:#763ed0"></span>--bg-brand-secondary</td>
+          <td><span class="spec-color-swatch" style="background:#3f1f73"></span>--bg-brand-tertiary</td>
+          <td><span class="spec-color-swatch" style="background:#2e1655"></span>--bg-brand-quarternary</td>
+          <td><span class="spec-color-swatch" style="background:#ffffff"></span>--fg-ondark-primary</td>
+        </tr>
+        <tr>
+          <td>primary-lemon</td>
+          <td><span class="spec-color-swatch" style="background:#e2ff30"></span>--bg-lemon-primary</td>
+          <td><span class="spec-color-swatch" style="background:#b6cd26"></span>--bg-lemon-secondary</td>
+          <td><span class="spec-color-swatch" style="background:#8a9c1d"></span>--bg-lemon-tertiary</td>
+          <td><span class="spec-color-swatch" style="background:#111113"></span>--fg-primary</td>
+        </tr>
+        <tr>
+          <td>secondary</td>
+          <td><span class="spec-color-swatch" style="background:#ede6fa"></span>--bg-brand-subtle-secondary</td>
+          <td><span class="spec-color-swatch" style="background:#e5daf7"></span>--bg-brand-subtle-tertiary</td>
+          <td><span class="spec-color-swatch" style="background:#d6c4f5"></span>--bg-brand-subtle-quarternary</td>
+          <td><span class="spec-color-swatch" style="background:#111113"></span>--fg-primary</td>
+        </tr>
+        <tr>
+          <td>secondary-round</td>
+          <td colspan="3">— same as secondary, only border-radius differs (full)</td>
+          <td><span class="spec-color-swatch" style="background:#111113"></span>--fg-primary</td>
+        </tr>
+        <tr>
+          <td>tertiary</td>
+          <td><span class="spec-color-swatch" style="background:#ffffff"></span>--bg-consistent-white</td>
+          <td><span class="spec-color-swatch" style="background:#ffffff"></span>(same · border appears)</td>
+          <td><span class="spec-color-swatch" style="background:#efeef2"></span>--bg-tertiary</td>
+          <td><span class="spec-color-swatch" style="background:#2e2c33"></span>--fg-secondary → primary → tertiary</td>
+        </tr>
+        <tr>
+          <td>quaternary</td>
+          <td>transparent</td>
+          <td>transparent</td>
+          <td>transparent</td>
+          <td><span class="spec-color-swatch" style="background:#763ed0"></span>--fg-brand-quaternary → tertiary → secondary</td>
+        </tr>
+        <tr>
+          <td>secondary-dark</td>
+          <td><span class="spec-color-swatch" style="background:rgba(255,255,255,0.12)"></span>--alpha-bg-a-white-12</td>
+          <td><span class="spec-color-swatch" style="background:rgba(255,255,255,0.20)"></span>--alpha-bg-a-white-20</td>
+          <td><span class="spec-color-swatch" style="background:rgba(255,255,255,0.30)"></span>--alpha-bg-a-white-30</td>
+          <td><span class="spec-color-swatch" style="background:#ffffff"></span>--fg-ondark-primary</td>
+        </tr>
+        <tr>
+          <td>secondary-round-dark</td>
+          <td colspan="3">— same alphas as secondary-dark, full radius</td>
+          <td><span class="spec-color-swatch" style="background:#ffffff"></span>--fg-ondark-primary</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== INTERACTIVITY ===== -->
+  <script>
+    // Click any button → toggle pressed visual + log to console (no real action)
+    document.querySelectorAll('.btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        if (btn.disabled || btn.dataset.loading === 'true') {
+          e.preventDefault();
+          return;
+        }
+        // brief visual ripple via outline pulse — purely cosmetic
+        btn.style.outline = '2px solid rgba(255,255,255,0.4)';
+        setTimeout(function () { btn.style.outline = ''; }, 120);
+        console.log('clicked', btn.className);
+      });
+    });
+  </script>
+
+</body>
+</html>
