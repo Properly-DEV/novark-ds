@@ -2,14 +2,9 @@
 
 React + TypeScript + Tailwind CSS design system for Novark.
 
-## 🔗 Live Preview
+## Preview
 
-**Button component:** [`/_preview/Button.html`](./_preview/Button.html)
-
-_After GitHub Pages is enabled, the live URL will be:_
-`https://properly-dev.github.io/novark-ds/_preview/Button.html`
-
-The preview shows all 32 variant × size combinations of the Button, full interaction states (default / hover / focus / pressed / disabled / loading), spec tables per size, and real-world casing tests.
+A standalone, self-contained preview of the Button component lives at [`_preview/Button.html`](./_preview/Button.html). Clone the repo and open the file in any browser — no build step, no install, no dev server. It shows all 32 variant × size combinations, every interaction state, spec tables per size, and real-world casing tests.
 
 ---
 
@@ -59,10 +54,6 @@ novark-ds/
 | `stroke-icon-sm` (our stroke) | `stroke-2` (Tailwind default) |
 
 This prevents design-system drift — any attempt to reach for a default Tailwind class that is not part of Novark will fail compilation. The goal is that you *cannot* use anything that is not in the design.
-
-## Theme
-
-**Single mode — `Issuer`.** No light/dark toggle. All semantic colors are exported from the Issuer collection in Figma.
 
 ## Quick start
 
