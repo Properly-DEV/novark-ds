@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novark — Design System</title>
+  <meta name="description" content="Novark Design System — React + TypeScript + Tailwind. Built by Properly.">
+
+  <!-- Design tokens — same file the components consume -->
+  <link rel="stylesheet" href="tokens/tokens.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      color-scheme: light;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--colors-bg-primary);
+      color: var(--colors-fg-primary);
+      font-family: var(--font-family-body);
+      font-weight: var(--font-weight-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding: var(--spacing-5xl) var(--spacing-xl);
+      gap: var(--spacing-7xl);
+    }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    .wrap {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-6xl);
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      padding-top: var(--spacing-5xl);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--colors-bg-brand-subtle-primary);
+      color: var(--colors-fg-brand-secondary);
+      border-radius: var(--radius-full);
+      font-size: var(--label-5-size);
+      line-height: var(--label-5-line-height);
+      font-weight: var(--font-weight-label);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      width: max-content;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--colors-bg-brand-primary);
+    }
+
+    .hero h1 {
+      font-family: var(--font-family-headings);
+      font-weight: var(--font-weight-label);
+      font-size: var(--display-3-size);
+      line-height: var(--display-3-line-height);
+      color: var(--colors-fg-primary);
+    }
+
+    .hero p {
+      font-size: var(--body-2-size);
+      line-height: var(--body-2-line-height);
+      color: var(--colors-fg-tertiary);
+      max-width: 640px;
+    }
+
+    /* Responsive hero sizing for small screens */
+    @media (max-width: 767px) {
+      body { padding: var(--spacing-4xl) var(--spacing-xl); gap: var(--spacing-5xl); }
+      .wrap { gap: var(--spacing-5xl); }
+      .hero { padding-top: var(--spacing-xl); }
+      .hero h1 { font-size: 40px; line-height: 44px; }
+    }
+
+    /* ─── Section header ────────────────────────────────────── */
+    .section-title {
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--colors-border-tertiary);
+    }
+    .section-title h2 {
+      font-family: var(--font-family-headings);
+      font-weight: var(--font-weight-label);
+      font-size: var(--heading-4-size);
+      line-height: var(--heading-4-line-height);
+      color: var(--colors-fg-primary);
+    }
+    .section-title .count {
+      font-size: var(--label-5-size);
+      line-height: var(--label-5-line-height);
+      color: var(--colors-fg-quaternary);
+      font-weight: var(--font-weight-body);
+    }
+
+    /* ─── Component grid ────────────────────────────────────── */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-2xl);
+    }
+
+    .component-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      padding: var(--spacing-3xl);
+      background: var(--colors-bg-secondary);
+      border: 1px solid var(--colors-border-tertiary);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s, background-color 0.2s;
+      cursor: pointer;
+    }
+    .component-card:hover {
+      background: var(--colors-bg-brand-subtle-primary);
+      border-color: var(--colors-border-brand-primary);
+      transform: translateY(-2px);
+    }
+    .component-card:focus-visible {
+      outline: none;
+      border-color: var(--colors-border-brand-primary);
+      box-shadow: 0 0 0 2px var(--colors-border-focus);
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      font-size: var(--label-6-size);
+      line-height: var(--label-6-line-height);
+      font-weight: var(--font-weight-label);
+      color: var(--colors-fg-system-success-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .card-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--colors-bg-system-success-primary);
+    }
+
+    .card-title {
+      font-family: var(--font-family-headings);
+      font-weight: var(--font-weight-label);
+      font-size: var(--heading-3-size);
+      line-height: var(--heading-3-line-height);
+      color: var(--colors-fg-primary);
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    .card-meta .chip {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: var(--colors-bg-tertiary);
+      color: var(--colors-fg-secondary);
+      border-radius: var(--radius-sm);
+      font-size: var(--label-6-size);
+      line-height: var(--label-6-line-height);
+      font-weight: var(--font-weight-label);
+    }
+
+    .card-description {
+      font-size: var(--body-5-size);
+      line-height: var(--body-5-line-height);
+      color: var(--colors-fg-tertiary);
+      margin-top: auto;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--colors-border-tertiary);
+      font-size: var(--label-4-size);
+      line-height: var(--label-4-line-height);
+      font-weight: var(--font-weight-label);
+      color: var(--colors-fg-brand-secondary);
+    }
+    .component-card:hover .card-cta { color: var(--colors-fg-brand-tertiary); }
+
+    /* Placeholder card (coming soon) */
+    .component-card--placeholder {
+      background: transparent;
+      border-style: dashed;
+      cursor: default;
+    }
+    .component-card--placeholder:hover {
+      background: transparent;
+      border-color: var(--colors-border-tertiary);
+      transform: none;
+    }
+    .component-card--placeholder .card-status { color: var(--colors-fg-quaternary); }
+    .component-card--placeholder .card-status .dot { background: var(--colors-bg-quaternary); }
+    .component-card--placeholder .card-title { color: var(--colors-fg-tertiary); }
+    .component-card--placeholder .card-cta { color: var(--colors-fg-quaternary); border-color: var(--colors-border-tertiary); }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      padding-top: var(--spacing-4xl);
+      border-top: 1px solid var(--colors-border-tertiary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-xl);
+      flex-wrap: wrap;
+      font-size: var(--body-6-size);
+      line-height: var(--body-6-line-height);
+      color: var(--colors-fg-quaternary);
+    }
+    footer a {
+      color: var(--colors-fg-brand-secondary);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--colors-fg-brand-tertiary); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <header class="hero">
+      <span class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Design System · v0.1
+      </span>
+      <h1>Novark</h1>
+      <p>
+        React + TypeScript + Tailwind CSS component library. Every visual value maps to a design token, every interaction state is pure CSS, and every component ships 1:1 with the Figma source of truth.
+      </p>
+    </header>
+
+    <!-- COMPONENTS -->
+    <section>
+      <div class="section-title">
+        <h2>Components</h2>
+        <span class="count">1 shipped · more coming</span>
+      </div>
+
+      <div class="component-grid">
+
+        <!-- Button -->
+        <a class="component-card" href="_preview/Button.html">
+          <div class="card-status">
+            <span class="dot"></span>
+            Production ready
+          </div>
+          <div class="card-title">Button</div>
+          <div class="card-meta">
+            <span class="chip">8 variants</span>
+            <span class="chip">4 sizes</span>
+            <span class="chip">6 states</span>
+          </div>
+          <p class="card-description">
+            Primary Violet, Primary Lemon, Secondary, Secondary Round, Tertiary, Quaternary, plus dark surface variants. Icons scale with the button via a triplet of size + stroke-width tokens.
+          </p>
+          <span class="card-cta">Open preview →</span>
+        </a>
+
+        <!-- Placeholder -->
+        <div class="component-card component-card--placeholder">
+          <div class="card-status">
+            <span class="dot"></span>
+            Planned
+          </div>
+          <div class="card-title">More soon</div>
+          <div class="card-meta">
+            <span class="chip">Input</span>
+            <span class="chip">Checkbox</span>
+            <span class="chip">Badge</span>
+          </div>
+          <p class="card-description">
+            Additional components are built on demand using the same token pipeline and QA pass.
+          </p>
+          <span class="card-cta">&nbsp;</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>Built by Properly · Powered by Claude Code</span>
+      <span>
+        <a href="https://github.com/Properly-DEV/novark-ds">GitHub repository</a>
+      </span>
+    </footer>
+
+  </div>
+
+</body>
+</html>
