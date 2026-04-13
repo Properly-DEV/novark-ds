@@ -201,6 +201,31 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
+    /* ── MOBILE RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 767px) {
+      body { padding: 16px; }
+
+      .preview-header { margin-bottom: 32px; }
+      .preview-header h1 { font-size: 20px; }
+
+      .section-title { margin-top: 36px; margin-bottom: 14px; font-size: 12px; }
+
+      .ctx-card { padding: 16px; border-radius: 12px; margin-bottom: 16px; }
+
+      /* Variant matrix — horizontal scroll */
+      .ctx-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .variant-matrix { min-width: 520px; border-spacing: 12px 12px; }
+
+      /* States rows — tighter gap, wrap naturally */
+      .states-row { gap: 16px; }
+      .states-block { margin-bottom: 20px; }
+
+      /* Spec tables — horizontal scroll via parent card or block */
+      .spec-block { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .spec-table { min-width: 480px; }
+      .spec-table[style*="max-width"] { max-width: none !important; }
+    }
+
     /* ============================================================
        BUTTON COMPONENT — exact mirror of Button.tsx (Tailwind classes
        resolved to plain CSS using the same tokens.css custom props).
